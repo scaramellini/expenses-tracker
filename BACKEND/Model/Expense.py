@@ -1,7 +1,18 @@
-from ..Controller.app import db
+from ..extensions import db
 
 class Expense(db.Model):
+    __tablename__ = "expenses"
+
+    #columns
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(200), nullable=False)
     amount = db.Column(db.Float, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    #foreign relationships
+    user_id = db.Column(
+        db.Integer,
+        db.ForeignKey("users.id"),
+        nullable=False
+    )
+
+    #relationships
+    # (No additional relationships defined here)
